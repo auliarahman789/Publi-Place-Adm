@@ -96,8 +96,6 @@ const GalleryPage: React.FC<GalleryPageProps> = ({}) => {
         { params }
       );
 
-      console.log("Fetched gallery data:", response.data);
-
       // Ensure we have valid data structure
       const responseData = response.data;
       const items = responseData.data || [];
@@ -105,14 +103,6 @@ const GalleryPage: React.FC<GalleryPageProps> = ({}) => {
 
       setGalleryData(items);
       setTotalPages(totalPages);
-
-      // Debug logging
-      console.log("Pagination info:", {
-        currentPage,
-        totalPages,
-
-        itemsCount: items.length,
-      });
     } catch (err) {
       console.error("Failed to fetch gallery data:", err);
       if (axios.isAxiosError(err)) {
@@ -151,8 +141,6 @@ const GalleryPage: React.FC<GalleryPageProps> = ({}) => {
         // If we're on page 1 and no items left, refresh to get accurate data
         fetchData(1);
       }
-
-      console.log(`Successfully deleted item with id: ${id}`);
     } catch (err) {
       console.error("Failed to delete item:", err);
       if (axios.isAxiosError(err)) {
